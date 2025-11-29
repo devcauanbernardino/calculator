@@ -15,11 +15,11 @@ import Display from "./src/components/Display";
 
 // Define o estado inicial da calculadora. Isso é útil para resetar a calculadora.
 const initialState = {
-  displayValue: "0",      // O valor que aparece no visor da calculadora.
-  clearDisplay: false,    // Um booleano que indica se o visor deve ser limpo no próximo dígito.
-  operation: null,        // Armazena a operação matemática selecionada (+, -, *, /).
-  values: [0, 0],         // Um array para guardar os dois números da operação.
-  current: 0,             // Indica qual dos 'values' (índice 0 ou 1) está sendo digitado.
+  displayValue: "0", // O valor que aparece no visor da calculadora.
+  clearDisplay: false, // Um booleano que indica se o visor deve ser limpo no próximo dígito.
+  operation: null, // Armazena a operação matemática selecionada (+, -, *, /).
+  values: [0, 0], // Um array para guardar os dois números da operação.
+  current: 0, // Indica qual dos 'values' (índice 0 ou 1) está sendo digitado.
 };
 
 // Define a classe principal do aplicativo, que herda de Component.
@@ -71,11 +71,12 @@ export default class App extends Component {
     if (this.state.current === 0) {
       // Atualiza o estado: define a operação, muda 'current' para 1 e prepara para limpar o visor.
       this.setState({ operation, current: 1, clearDisplay: true });
-    } else { // Se já estivermos inserindo o segundo número...
+    } else {
+      // Se já estivermos inserindo o segundo número...
       // Verifica se a operação é o sinal de igual (=).
       const equals = operation === "=";
       // Cria uma cópia do array 'values' do estado.
-      const values = { ...this.state.values };
+      const values = [...this.state.values];
       try {
         // Tenta executar o cálculo usando 'eval'. Ex: eval("2 + 3").
         // Isso calcula o resultado de 'values[0] operação values[1]'.
@@ -142,6 +143,6 @@ const styles = StyleSheet.create({
   // Estilo para o container dos botões.
   buttons: {
     flexDirection: "row", // Organiza os botões em uma linha.
-    flexWrap: "wrap",     // Permite que os botões quebrem para a próxima linha.
+    flexWrap: "wrap", // Permite que os botões quebrem para a próxima linha.
   },
 });
